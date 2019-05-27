@@ -31,6 +31,12 @@
 
 					<div class="col-sm-6">
 						<span onclick="javascript:document.forms[0].submit()" class="btn btn-danger btn-block" style="cursor: pointer">Delete</span>
+					</div>					
+				</div>
+
+				<div class="row">
+					<div class="col-sm">
+						<a href="{{route('posts.index')}}" class="btn btn-light btn-block"><< See All Posts</a>
 					</div>
 				</div>
 			</div>

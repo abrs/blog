@@ -111,6 +111,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     postBody: {
       required: true
+    },
+    href: {
+      "default": '#'
     }
   }
 });
@@ -605,7 +608,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [_vm._v(_vm._s(_vm.postBody))]),
     _vm._v(" "),
-    _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
+    _c("a", { staticClass: "btn btn-primary", attrs: { href: _vm.href } }, [
       _vm._v("Read more")
     ]),
     _vm._v(" "),

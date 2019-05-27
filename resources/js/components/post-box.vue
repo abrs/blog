@@ -2,7 +2,7 @@
     <div>
         <h3>{{postTitle}}</h3>          
         <p>{{postBody}}</p>
-        <a href="#" class="btn btn-primary">Read more</a>
+        <a :href="href" class="btn btn-primary">Read more</a>
         <hr>
     </div>
 </template>
@@ -11,7 +11,8 @@
     export default {
         props: {
         	postTitle : {required: true},
-        	postBody  : {required: true}
+        	postBody  : {required: true},
+            href      : {default : '#'}
     	}
     }
 </script>

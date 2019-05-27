@@ -20,7 +20,9 @@
       <div class="row">
         <div class="col-md-8">
           <div id="app">
-            <post-box post-title="dummy text" post-body="dummy text"></post-box>                          
+            @foreach($posts as $post)
+              <post-box post-title="{{$post->title}}" post-body="{{str_limit($post->body, 300)}}"></post-box>              
+            @endforeach
           </div>
         </div>
 
