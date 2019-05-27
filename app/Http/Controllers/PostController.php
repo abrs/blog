@@ -111,7 +111,8 @@ class PostController extends Controller
     private function getTheValidationAttributes() :array {
          $attributes = request()->validate([
             'title' => ['required', 'max:255'],
-            'body' => ['required']
+            'body'  => ['required'],
+            'slug'  => ['required', 'alpha_dash', 'min:5', 'max:255', 'unique:posts']
         ]);
 
          return $attributes;

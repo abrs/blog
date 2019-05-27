@@ -13,6 +13,11 @@
 		<div class="col-md-4">
 			<div class="shadow p-3 mb-5 bg-light">
 				<dl>
+					<dt>Url:</dt>
+					<dd><a href="{{url($post->slug)}}">{{url($post->slug)}}</a></dd>
+				</dl>
+
+				<dl>
 					<dt>Created At:</dt>
 					<dd>{{date('M j, Y h:i a', strtotime($post->created_at))}}</dd>
 				</dl>

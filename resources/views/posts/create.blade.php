@@ -18,8 +18,13 @@
 				</div>
 
 				<div class="form-group">
-					<label for="description">Body: </label>
+					<label for="body">Body: </label>
 					<textarea  class="form-control" name="body" placeholder="e.g. post body">{{old('body')}}</textarea>
+				</div>
+
+				<div class="form-group">
+					<label for="slug">slug: </label>
+					<input  type="text" class="form-control" name="slug" placeholder="e.g. nature-post" value="{{old('slug')}}">
 				</div>
 
 				<input type="submit" class="btn btn-success btn-lg btn-block" value="Create Post">

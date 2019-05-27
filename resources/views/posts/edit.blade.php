@@ -19,6 +19,11 @@
 					<label for="description">Body: </label>
 					<textarea  class="form-control" name="body">{{$post->body}}</textarea>
 				</div>				
+
+				<div class="form-group">
+					<label for="slug">Slug: </label>
+					<input  type="text" class="form-control" name="slug" value="{{$post->slug}}">
+				</div>
 			</form>
 			
 		</div>
