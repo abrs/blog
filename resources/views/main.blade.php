@@ -10,7 +10,9 @@
     <!-- Container -->
     <div class="container" style="margin-top:1em">
 
-      @include('partials._messages')
+      <span id="app2">
+        @include('partials._messages')
+      </span>
 
       @yield('content')
       

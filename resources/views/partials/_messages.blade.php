@@ -1,16 +1,17 @@
 @if(session('success'))
-	<div class="alert alert-success" role="alert">
-		<strong>Success: </strong> {{session('success')}}
-	</div>
+
+	<toast-message title="Success">
+		{{session('success')}}
+	</toast-message>
+	
 @endif
 
 @if($errors->any())
-	<div class="alert alert-danger" role="alert">
-		<strong>Erros: </strong>
-		<ul>	
-			@foreach($errors->all() as $error)
-				<li>{{$error}}</li>
-			@endforeach
-		</ul>
-	</div>
+
+	@foreach($errors->all() as $error)
+		<toast-message title="Error">
+			{{$error}}
+		</toast-message>
+	@endforeach
+
 @endif
