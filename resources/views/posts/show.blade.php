@@ -14,7 +14,7 @@
 			<div class="shadow p-3 mb-5 bg-light">
 				<dl>
 					<dt>Url:</dt>
-					<dd><a href="{{url($post->slug)}}">{{url($post->slug)}}</a></dd>
+					<dd><a href="{{route('blog.single', $post->slug)}}">{{route('blog.single', $post->slug)}}</a></dd>
 				</dl>
 
 				<dl>

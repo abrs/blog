@@ -21,7 +21,7 @@
         <div class="col-md-8">
           <div id="app">
             @foreach($posts as $post)
-              <post-box post-title="{{$post->title}}" post-body="{{str_limit($post->body, 300)}}"></post-box>              
+              <post-box href="{{route('blog.single', $post->slug)}}" post-title="{{$post->title}}" post-body="{{str_limit($post->body, 300)}}"></post-box>              
             @endforeach
           </div>
         </div>
