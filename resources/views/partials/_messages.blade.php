@@ -3,7 +3,7 @@
 	<toast-message title="Success">
 		{{session('success')}}
 	</toast-message>
-	
+
 @endif
 
 @if($errors->any())

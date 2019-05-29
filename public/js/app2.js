@@ -31740,7 +31740,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-toast",
-    { attrs: { title: _vm.title, visible: "" } },
+    { attrs: { title: _vm.title, visible: "", solid: "" } },
     [_vm._t("default")],
     2
   )

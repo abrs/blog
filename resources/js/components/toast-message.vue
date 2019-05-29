@@ -1,5 +1,5 @@
 <template>
-	<b-toast :title="title" visible>
+	<b-toast :title="title" visible solid>
 	  <slot></slot>
 	</b-toast>
 </template>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -78,7 +79,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $attributes = $this->getTheValidationAttributes();
+        $attributes = $this->getTheValidationAttributes($post);
 
         $post->update($attributes);
 
@@ -108,12 +109,13 @@ class PostController extends Controller
      * return the validation attributes
      * @return array
      */
-    private function getTheValidationAttributes() :array {
-         $attributes = request()->validate([
-            'title' => ['required', 'max:255'],
-            'body'  => ['required'],
-            'slug'  => ['required', 'alpha_dash', 'min:5', 'max:255', 'unique:posts']
-        ]);
+    private function getTheValidationAttributes(Post $post = null) :array {
+
+        $attributes = request()->validate([
+                'title' => ['required', 'max:255'],
+                'body'  => ['required'],
+                'slug'  => ['required', 'alpha_dash', 'min:5', 'max:255', Rule::unique('posts')->ignore($post)]                
+            ]);
 
          return $attributes;
     }
