@@ -10,6 +10,9 @@
       <li class="nav-item {{request()->is("/") ? "active" : ""}}">
         <a class="nav-link" href="/">Home</a>
       </li>
+      <li class="nav-item {{request()->is("blog") ? "active" : ""}}">
+        <a class="nav-link" href="/blog">Blog</a>
+      </li>
       <li class="nav-item {{request()->is("about") ? "active" : ""}}">
         <a class="nav-link" href="/about">About</a>
       </li>
@@ -23,10 +26,10 @@
           My Account
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="{{ route('posts.index') }}">Posts</a>
           <a class="dropdown-item" href="#">Another action</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">Logout</a>
         </div>
       </li>
     </ul>

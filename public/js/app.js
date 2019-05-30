@@ -104,10 +104,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     postTitle: {
       required: true
+    },
+    published: {},
+    showPublished: {
+      "default": false
     },
     postBody: {
       required: true
@@ -31752,7 +31757,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h3", [_vm._v(_vm._s(_vm.postTitle))]),
+    _c("h2", [_vm._v(_vm._s(_vm.postTitle))]),
+    _vm._v(" "),
+    _vm.showPublished
+      ? _c("h5", [_vm._v("Published: " + _vm._s(_vm.published))])
+      : _vm._e(),
     _vm._v(" "),
     _c("p", [_vm._v(_vm._s(_vm.postBody))]),
     _vm._v(" "),
