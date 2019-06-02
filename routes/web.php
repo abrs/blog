@@ -18,4 +18,7 @@ Route::get('/contact', 'PagesController@contact');
 Route::get('blog', 'BlogController@getIndex')->name('blog.index');
 Route::get('blog/{slug}', 'BlogController@getSingle')->name('blog.single')->where('slug', '[\w\d\-\_]+');
 
-Route::resource('posts', 'PostController');
+Route::resource('posts', 'PostController')->middleware('auth');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
