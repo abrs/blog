@@ -11,14 +11,20 @@
 |
 */
 
+#Pages
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
 
+#Guest's Blog
 Route::get('blog', 'BlogController@getIndex')->name('blog.index');
 Route::get('blog/{slug}', 'BlogController@getSingle')->name('blog.single')->where('slug', '[\w\d\-\_]+');
 
+#Posts
 Route::resource('posts', 'PostController')->middleware('auth');
+
+#User Default Authentication System.
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+#Categories
+Route::resource('categories', 'CategoryContoller')->except('create')->middleware('auth');

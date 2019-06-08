@@ -34,11 +34,11 @@
       @else
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            My Account
+            {{ auth()->user()->name }}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('posts.index') }}">Posts</a>
-            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="{{ route('categories.index') }}">Categories</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" style="cursor: pointer;" onclick="javascript:document.querySelector('#logout-form').submit()">Logout</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
