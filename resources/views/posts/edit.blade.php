@@ -6,7 +6,7 @@
 
 	<div class="row">
 		<div class="col-md-8">
-			<form method="post" action="{{route('posts.update', $post->id)}}">
+			<form id="editPost" method="post" action="{{route('posts.update', $post->id)}}">
 				@csrf
 				@method('PATCH')
 
@@ -16,16 +16,25 @@
 				</div>
 
 				<div class="form-group">
-					<label for="description">Body: </label>
-					<textarea  class="form-control" name="body">{{$post->body}}</textarea>
-				</div>				
-
-				<div class="form-group">
 					<label for="slug">Slug: </label>
 					<input  type="text" class="form-control" name="slug" value="{{$post->slug}}">
 				</div>
+
+				<div class="form-group">
+					<label for="category_id">Category: </label>
+					<select class="form-control" name="category_id">
+						@foreach ($categories as $category)
+							<option value="{{ $category->id }}" {{ $category->id === $post->category_id ? "selected" : ""}}>{{ $category->name }}</option>
+						@endforeach
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="description">Body: </label>
+					<textarea  class="form-control" name="body">{{$post->body}}</textarea>
+				</div>
 			</form>
-			
+
 		</div>
 
 		<div class="col-md-4">
@@ -48,7 +57,7 @@
 					</div>
 
 					<div class="col-sm-6">
-						<span onclick="javascript:document.forms[0].submit()" class="btn btn-success btn-block" style="cursor: pointer">Save Changes</span>
+						<span onclick="javascript:document.querySelector('#editPost').submit()" class="btn btn-success btn-block" style="cursor: pointer">Save Changes</span>
 					</div>
 				</div>
 			</div>

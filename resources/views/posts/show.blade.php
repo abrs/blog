@@ -18,6 +18,11 @@
 				</dl>
 
 				<dl>
+					<dt>Categorized as:</dt>
+					<dd>{{$post->category->name}}</dd>
+				</dl>
+
+				<dl>
 					<dt>Created At:</dt>
 					<dd>{{date('M j, Y h:i a', strtotime($post->created_at))}}</dd>
 				</dl>
@@ -36,7 +41,7 @@
 
 					<div class="col-sm-6">
 						<span onclick="javascript:document.forms[0].submit()" class="btn btn-danger btn-block" style="cursor: pointer">Delete</span>
-					</div>					
+					</div>
 				</div>
 
 				<div class="row">

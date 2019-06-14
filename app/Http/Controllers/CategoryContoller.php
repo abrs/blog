@@ -29,7 +29,7 @@ class CategoryContoller extends Controller
     public function store(Request $request)
     {
         $attributes = $this->getTheValidationAttributes();
-        
+
         $category = Category::create($attributes);
 
         session()->flash('success', $category->name . ' is saved..');
@@ -45,7 +45,7 @@ class CategoryContoller extends Controller
      */
     public function show(Category $category)
     {
-        return view('categories.show', compact($category));
+        // return view('categories.show', compact($category));
     }
 
     /**
@@ -56,7 +56,7 @@ class CategoryContoller extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit', compact($category));        
+        // return view('categories.edit', compact($category));
     }
 
     /**
@@ -69,7 +69,7 @@ class CategoryContoller extends Controller
     public function update(Request $request, Category $category)
     {
         $attributes = $this->getTheValidationAttributes();
-        
+
         $category->update($attributes);
 
         session()->flash('success', $category->name . ' is updated..');
