@@ -19,7 +19,7 @@
 
 				<dl>
 					<dt>Categorized as:</dt>
-					<dd>{{$post->category->name}}</dd>
+					<dd>{{$post->category->name ?? "uncategorized"}}</dd>
 				</dl>
 
 				<dl>
@@ -40,7 +40,7 @@
 					</div>
 
 					<div class="col-sm-6">
-						<span onclick="javascript:document.forms[0].submit()" class="btn btn-danger btn-block" style="cursor: pointer">Delete</span>
+						<span onclick="javascript:document.querySelector('#deleteForm').submit()" class="btn btn-danger btn-block" style="cursor: pointer">Delete</span>
 					</div>
 				</div>
 
@@ -52,7 +52,7 @@
 			</div>
 		</div>
 
-		<form method="post" action="{{route('posts.destroy', $post->id)}}" style="display: none">@csrf @method('DELETE')</form>
+		<form id="deleteForm" method="post" action="{{route('posts.destroy', $post->id)}}" style="display: none">@csrf @method('DELETE')</form>
 	</div>
 
 @endsection
