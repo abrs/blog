@@ -18,7 +18,7 @@
       </li>
       <li class="nav-item {{request()->is("contact") ? "active" : ""}}">
         <a class="nav-link" href="/contact">Contact</a>
-      </li>         
+      </li>
     </ul>
     <ul class="navbar-nav">
 
@@ -39,6 +39,7 @@
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('posts.index') }}">Posts</a>
             <a class="dropdown-item" href="{{ route('categories.index') }}">Categories</a>
+            <a class="dropdown-item" href="{{ route('tags.index') }}">Tags</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" style="cursor: pointer;" onclick="javascript:document.querySelector('#logout-form').submit()">Logout</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -46,7 +47,7 @@
             </form>
           </div>
         </li>
-      @endguest 
+      @endguest
     </ul>
  </div>
 </nav> <!-- end of navbar -->

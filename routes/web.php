@@ -23,6 +23,9 @@ Route::get('blog/{slug}', 'BlogController@getSingle')->name('blog.single')->wher
 #Posts
 Route::resource('posts', 'PostController')->middleware('auth');
 
+#tags
+Route::resource('tags', 'TagController')->middleware('auth')->except(['create', 'update', 'show', 'edit'])->middleware('auth');
+
 #User Default Authentication System.
 Auth::routes();
 

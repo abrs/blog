@@ -8,6 +8,13 @@
 		<div class="col-md-8">
 			<h1>{{ucfirst($post->title)}}</h1>
 			<p class="lead">{{ucfirst($post->body)}}</p>
+			<div class="tags">
+				@foreach ($post->tags as $key => $tag)
+					<span class="badge badge-pill badge-light" style="font-size: 1em">
+						{{$tag->name ?? "uncategorized"}}
+					</span>
+				@endforeach
+			</div>
 		</div>
 
 		<div class="col-md-4">

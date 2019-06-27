@@ -2,6 +2,10 @@
 
 @section('title', '| Edit Blog Post')
 
+@section('stylesheets')
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+@endsection
+
 @section('content')
 
 	<div class="row">
@@ -27,6 +31,22 @@
 							<option value="{{ $category->id }}" {{ $category->id === $post->category_id ? "selected" : ""}}>{{ $category->name }}</option>
 						@endforeach
 					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="tags">Tags: </label>
+
+					<select class="form-control multiple-tags" name="tags[]" multiple>
+						{!! $matchedTag = false !!}
+						@foreach ($tags as $tag)
+							@foreach ($post->tags as $selectedTag)
+								@break($matchedTag = $tag->id === $selectedTag->id)
+							@endforeach
+							<option value="{{ $tag->id }}" {{ $matchedTag ? "selected" : "" }}>{{ $tag->name }}</option>
+							{!! $matchedTag = false !!}
+						@endforeach
+					</select>
+
 				</div>
 
 				<div class="form-group">
@@ -68,4 +88,8 @@
 
 @section('scripts')
     <script src="{{asset("js/app2.js")}}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+		<script>
+			$('.multiple-tags').select2();
+		</script>
 @endsection

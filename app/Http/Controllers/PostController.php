@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
+use App\{Post, Tag};
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Category;
@@ -29,7 +29,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create', compact('categories'));
+        $tags = Tag::all();
+        return view('posts.create', compact(['categories', 'tags']));
     }
 
     /**
@@ -43,6 +44,8 @@ class PostController extends Controller
         $attributes = $this->getTheValidationAttributes();
 
         $post = Post::create($attributes);
+
+        $post->tags()->syncWithoutDetaching ($request->tags);
 
         session()->flash('success', 'the post has been stored successfully!');
 
@@ -70,7 +73,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('posts.edit', compact(['post', 'categories']));
+        $tags = Tag::all();
+
+        return view('posts.edit', compact(['post', 'categories', 'tags']));
     }
 
     /**
@@ -81,10 +86,12 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Post $post)
-    {
+    {        
         $attributes = $this->getTheValidationAttributes($post);
 
         $post->update($attributes);
+
+        $post->tags()->sync($request->tags);
 
         session()->flash('success', 'the post has been updated successfully!');
 
