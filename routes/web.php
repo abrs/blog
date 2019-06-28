@@ -24,10 +24,10 @@ Route::get('blog/{slug}', 'BlogController@getSingle')->name('blog.single')->wher
 Route::resource('posts', 'PostController')->middleware('auth');
 
 #tags
-Route::resource('tags', 'TagController')->middleware('auth')->except(['create', 'update', 'show', 'edit'])->middleware('auth');
+Route::resource('tags', 'TagController')->middleware('auth')->except(['create', 'edit'])->middleware('auth');
 
 #User Default Authentication System.
 Auth::routes();
 
 #Categories
-Route::resource('categories', 'CategoryContoller')->except('create')->middleware('auth');
+Route::resource('categories', 'CategoryContoller')->except(['create', 'show', 'edit'])->middleware('auth');

@@ -13,15 +13,31 @@
 					<tr>
 						<th>#</th>
 						<th>Name</th>
+						<th></th>
 					</tr>
 				</thead>
 
-				<tbody>
+				<tbody id="form-update-trick">
 					@foreach($tags as $tag)
 
 						<tr>
 							<th>{{ $tag->id }}</th>
-							<td>{{ $tag->name }}</td>
+							<td><a href="{{route('tags.show', $tag->id)}}">{{ $tag->name }}</a></td>
+							<td>
+								<button v-if="edit" @click="toggle()" class="btn btn-success btn-sm">Edit</button>
+								<template v-if="visible">
+									<form action="{{route('tags.update', $tag->id)}}" method="post">
+										@csrf
+										@method('PATCH')
+
+										<div class="form-group input-group">
+											<input type="text" class="form-control" name="name" placeholder="To ??">
+											<button type="submit" class="btn btn-success btn-sm">Save</button>
+											<button @click="toggle()" class="btn btn-danger btn-sm">Cancel</button>
+										</div>
+									</form>
+								</template>
+							</td>
 						</tr>
 					@endforeach
 				</tbody>
@@ -49,4 +65,21 @@
 
 @section('scripts')
     <script src="{{asset("js/app2.js")}}"></script>
+		<script>
+			new Vue({
+				el: '#form-update-trick',
+
+				data: {
+					edit: true,
+					visible: false
+				},
+
+				methods: {
+					toggle() {
+						this.edit = !this.edit;
+						this.visible = !this.visible;
+					}
+				}
+			})
+		</script>
 @endsection

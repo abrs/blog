@@ -45,18 +45,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tag $tag)
-    {
-        // return view('tags.edit', compact('tag'));
+        return view('tags.show', compact('tag'));
     }
 
     /**
@@ -72,9 +61,11 @@ class TagController extends Controller
         'name' => ['required', 'max:255']
       ]);
 
+      $tag_name = $tag->name;
+
       $tag->update($attributes);
 
-      session()->flash('success', $tag->name . ' is updated..');
+      session()->flash('success', $tag_name . ' updated to ' . $tag->name);
 
       return redirect()->route('tags.index');
     }
@@ -92,7 +83,7 @@ class TagController extends Controller
 
         $tag->delete();
 
-        session()->flash('success', $tag_name . 'is deleted..');
+        session()->flash('success', $tag_name . 'has been deleted..');
 
         return redirect('tags.index');
     }
