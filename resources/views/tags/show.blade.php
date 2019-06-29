@@ -8,8 +8,11 @@
     <div class="col-md-8">
       <h1 style="display:inline-block">{{ $tag->name }} </h1><small class="badge"><sub>{{$tag->posts()->count()}} Post</sub></small>
     </div>
-    <div class="col-md-2 offset-md-2">
+    <div class="col-md-2">
       <a href="{{route('tags.index')}}" class="btn btn-block btn-primary">Edit</a>
+    </div>
+    <div class="col-md-2">
+      <form action="{{route('tags.destroy', $tag->id)}}" method="post">@csrf @method('DELETE') <button type="submit" class="btn btn-block btn-danger">Delete</button></form>
     </div>
   </div>
 

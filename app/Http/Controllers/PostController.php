@@ -86,7 +86,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Post $post)
-    {        
+    {
         $attributes = $this->getTheValidationAttributes($post);
 
         $post->update($attributes);
@@ -108,6 +108,7 @@ class PostController extends Controller
     {
         $postTitle = $post->title;
 
+        $post->tags()->detach();
         $post->delete();
 
         session()->flash('success', "\"" . $postTitle . "\" deleted successfully");

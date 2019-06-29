@@ -81,10 +81,11 @@ class TagController extends Controller
 
         $tag_name = $tag->name;
 
+        $tag->posts()->detach();
         $tag->delete();
 
         session()->flash('success', $tag_name . 'has been deleted..');
 
-        return redirect('tags.index');
+        return redirect()->route('tags.index');
     }
 }
