@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendContactForm;
 use App\Post;
 
 class PagesController extends Controller
@@ -21,5 +23,11 @@ class PagesController extends Controller
     public function contact()
     {
     	return view('pages.contact');
+    }
+
+    public function SendContact()
+    {
+      Mail::to('mhmmdhi@hotmail')->send(new SendContactForm(request()));
+      return redirect('/');
     }
 }

@@ -6,22 +6,24 @@
 
       <div class="row">
         <div class="col-md">
-          <h1>Contact Us</h1>          
+          <h1>Contact Us</h1>
 
-          <form>
-            <div class="form-group">            
+          <form action="{{ url('/contact') }}" method="POST">
+            @csrf
+
+            <div class="form-group">
               <label for="email">email: </label>
-              <input type="email" class="form-control" placeholder="e.g. name@example.com">
+              <input type="email" name='mail' class="form-control" placeholder="e.g. name@example.com">
             </div>
 
-            <div class="form-group">            
+            <div class="form-group">
               <label for="subject">subject: </label>
-              <input type="text" class="form-control" placeholder="e.g. project title">
+              <input type="text" name='subject' class="form-control" placeholder="e.g. project title">
             </div>
 
-            <div class="form-group">            
+            <div class="form-group">
               <label for="Message">Message: </label>
-              <textarea class="form-control" placeholder="e.g. Lorem ipsum dolor sit amet"></textarea>
+              <textarea class="form-control" name="message" placeholder="e.g. Lorem ipsum dolor sit amet"></textarea>
             </div>
 
             <input type="submit" class='btn btn-success' value="Send Message">

@@ -15,6 +15,32 @@
 					</span>
 				@endforeach
 			</div>
+
+			<table class="table shadow p-3 mb-5 bg-light">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Comment</th>
+					</tr>
+				</thead>
+
+				<tbody id='editComment'>
+					@foreach ($post->comments as $comment)
+						<tr>
+							<td> {{$comment->name}} </td>
+							<td> {{$comment->email}} </td>
+							<td>
+								<update-comment
+									action="{{route('comments.update', $comment->id)}}"
+									commento="{{$comment->comment}}"
+									del="{{route('comments.destroy', $comment->id)}}">
+								</update-comment>
+							</td>
+						</tr>
+					@endforeach
+				</tbody>
+			</table>
 		</div>
 
 		<div class="col-md-4">
@@ -66,4 +92,44 @@
 
 @section('scripts')
     <script src="{{asset("js/app2.js")}}"></script>
+		<script>
+
+			Vue.component('update-comment', {
+				props: ['action', 'commento', 'del'],
+
+				template: `
+					<form :action="action" method="POST">
+						@csrf
+						@method('PATCH')
+						<div class="input-group mb-3">
+							<input type='text' name="comment" class="form-control" :disabled="disabled" :value="commento">
+							<div class="input-group-append">
+								<a class="btn btn-primary" style="cursor:pointer; color:#FFF" @click="toggleDisabled()"><i class="material-icons" v-text="edit"></i></a>
+								<button type="submit" v-if="!disabled" class="btn btn-warning"><i class="material-icons">save</i></button>
+								<form :action="del" method="POST"> @csrf @method('DELETE') <i class="material-icons"><button type="submit" class="btn btn-danger">delete</button></i></form>
+							</div>
+						</div>
+					</form>
+				`,
+
+				data() {
+					return {
+						disabled: true,
+						edit: 'edit'
+					}
+				},
+
+				methods: {
+					toggleDisabled() {
+						this.disabled = !this.disabled;
+						this.edit = this.edit == 'edit' ? 'cancel' : 'edit';
+					}
+			}
+		});
+
+			new Vue({
+				el: '#editComment'
+
+			});
+		</script>
 @endsection

@@ -14,10 +14,10 @@ class BlogController extends Controller
 		return view('blog.index', compact('posts'));
 	}
 
-    public function getSingle($slug)
-    {
-    	$post = Post::where('slug', '=', $slug)->first();
+  public function getSingle($slug)
+  {
+  	$post = Post::where('slug', '=', $slug)->first();
 
-    	return view('blog.single', compact('post'));
-    }
+  	return view('blog.single', compact('post'));
+  }
 }
