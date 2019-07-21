@@ -6,6 +6,7 @@ use App\{Post, Tag};
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Category;
+use Purifier;
 
 class PostController extends Controller
 {
@@ -42,6 +43,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $attributes = $this->getTheValidationAttributes();
+        $attributes['body'] = Purifier::clean($attributes['body']);
 
         $post = Post::create($attributes);
 
@@ -88,6 +90,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $attributes = $this->getTheValidationAttributes($post);
+        $attributes['body'] = Purifier::clean($attributes['body']);
 
         $post->update($attributes);
 

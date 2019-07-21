@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-md-8">
 			<h1>{{ucfirst($post->title)}}</h1>
-			<p class="lead">{{ucfirst($post->body)}}</p>
+			<p class="lead">{!! ucfirst($post->body) !!}</p>
 			<div class="tags">
 				@foreach ($post->tags as $key => $tag)
 					<span class="badge badge-pill badge-dark" style="font-size: 1em">

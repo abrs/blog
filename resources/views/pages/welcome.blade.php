@@ -15,13 +15,13 @@
           </div>
         </div>
       </div>
-      
+
       <!-- posts -->
       <div class="row">
         <div class="col-md-8">
           <div id="app">
             @foreach($posts as $post)
-              <post-box href="{{route('blog.single', $post->slug)}}" post-title="{{$post->title}}" post-body="{{str_limit($post->body, 300)}}"></post-box>              
+              <post-box href="{{route('blog.single', $post->slug)}}" post-title="{{$post->title}}" post-body="{{str_limit(strip_tags($post->body), 300)}}"></post-box>              
             @endforeach
           </div>
         </div>

@@ -3,7 +3,7 @@
 @section('title', '| All Posts')
 
 @section('content')
-	
+
 	<div class="row">
 		<div class="col-md-10">
 			<h1>All Posts</h1>
@@ -37,11 +37,11 @@
 
 							<td> {{$post->title}} </td>
 
-							<td> {{ str_limit($post->body, 50)}} </td>
+							<td> {{ str_limit(strip_tags($post->body), 50)}} </td>
 
 							<td> {{$post->created_at->diffForHumans()}} </td>
 
-							<td> 
+							<td>
 								<div class="row">
 									<div class="col-md-6">
 										<a href="{{route('posts.edit', $post->id)}}" class="btn btn-sm btn-block btn-warning">Edit</a>

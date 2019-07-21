@@ -4,6 +4,14 @@
 
 @section('stylesheets')
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+
+	<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+  <script>
+		tinymce.init({
+		  selector: "textarea",
+			menubar: false
+	});
+</script>
 @endsection
 
 @section('content')
