@@ -11,6 +11,9 @@
 	<div class="row">
 		<div class="col-md-8 mx-auto">
 			<h1>{{$post->title}}</h1>
+			@if($post->image)
+				<img style="box-shadow:.1em .2em; width: 100%" src="{{ asset('images\\' . $post->image) }}" alt="Post Image">
+			@endif
 			<p class="ranga-font">{!! $post->body !!}</p>
 			<hr>
 			<p>Posted in: {{ $post->category->name ?? "uncategorized"}}</p>

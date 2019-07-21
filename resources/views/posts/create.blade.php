@@ -21,7 +21,7 @@
 
 			<h1>Create New Post</h1>
 
-			<form method="post" action="{{route('posts.store')}}">
+			<form method="post" action="{{route('posts.store')}}" enctype="multipart/form-data">
 				@csrf
 
 				<div class="form-group">
@@ -51,6 +51,11 @@
 						@endforeach
 					</select>
 				</div>
+
+				<div class="form-group">
+					<label for="image">image</label>
+						<input type="file" name="image" class="form-control">
+					</div>
 
 				<div class="form-group">
 					<label for="body">Body: </label>

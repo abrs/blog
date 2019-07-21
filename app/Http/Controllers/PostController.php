@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Category;
 use Purifier;
+use Image;
 
 class PostController extends Controller
 {
@@ -44,6 +45,18 @@ class PostController extends Controller
     {
         $attributes = $this->getTheValidationAttributes();
         $attributes['body'] = Purifier::clean($attributes['body']);
+
+        if($request->hasFile('image')) {
+
+          $image = $request->file('image');
+          $imageName = time() . '.' . $image->getClientOriginalExtension();
+          $location = public_path('images\\' . $imageName);
+
+          Image::make($image)->resize(800, 400)->save($location);
+          $attributes['image'] = $imageName;
+        }
+
+        // dd($attributes);
 
         $post = Post::create($attributes);
 
@@ -91,6 +104,21 @@ class PostController extends Controller
     {
         $attributes = $this->getTheValidationAttributes($post);
         $attributes['body'] = Purifier::clean($attributes['body']);
+
+        if($request->hasFile('image')) {
+
+          #deleting the previous image
+          if ($post->image !== Null)
+            unlink(public_path('images\\' . $post->image));
+
+          #adding the new one
+          $image = $request->file('image');
+          $imageName = time() . '.' . $image->getClientOriginalExtension();
+          $location = public_path('images\\' . $imageName);
+
+          Image::make($image)->resize(800, 400)->save($location);
+          $attributes['image'] = $imageName;
+        }
 
         $post->update($attributes);
 

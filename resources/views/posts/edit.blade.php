@@ -18,7 +18,7 @@
 
 	<div class="row">
 		<div class="col-md-8">
-			<form id="editPost" method="post" action="{{route('posts.update', $post->id)}}">
+			<form id="editPost" method="post" action="{{route('posts.update', $post->id)}}" enctype="multipart/form-data">
 				@csrf
 				@method('PATCH')
 
@@ -55,6 +55,14 @@
 						@endforeach
 					</select>
 
+				</div>
+
+				<div class="form-group">
+					<label for="image">image</label>
+					@if($post->image)
+						<img style="box-shadow:.1em .2em; width: 100%" src="{{ asset('images\\' . $post->image) }}" alt="Post Image">
+					@endif
+					<input type="file" name="image" class="form-control">
 				</div>
 
 				<div class="form-group">
