@@ -64,7 +64,7 @@ class PostController extends Controller
 
         session()->flash('success', 'the post has been stored successfully!');
 
-        return redirect()->route('posts.show', $post->id);
+        // return redirect()->route('posts.show', $post->id);
 
     }
 

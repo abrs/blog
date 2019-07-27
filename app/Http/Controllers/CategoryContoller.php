@@ -32,9 +32,9 @@ class CategoryContoller extends Controller
 
         $category = Category::create($attributes);
 
-        session()->flash('success', $category->name . ' is saved..');
+        // session()->flash('success', $category->name . ' is saved..');
 
-        return redirect()->route('categories.index');
+        // return redirect()->route('categories.index');
     }
 
     /**

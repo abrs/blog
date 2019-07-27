@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +11,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+#test purposes ---------------
+
+Route::get('cag', function() {
+  return Category::all();
+});
+
+#--------------
+
 
 #Pages
 Route::get('/', 'PagesController@index');

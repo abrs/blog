@@ -8,7 +8,7 @@
 		<div class="col-md-8">
 			<h1>{{ucfirst($post->title)}}</h1>
 			@if($post->image)
-				<img style="box-shadow:.1em .2em; width: 100%" src="{{ asset('images\\' . $post->image) }}" alt="Post Image">
+				<img style="border-radius: 10% 0;box-shadow:.1em .2em; width: 100%" src="{{ asset('images\\' . $post->image) }}" alt="Post Image">
 			@endif
 			<p class="lead">{!! ucfirst($post->body) !!}</p>
 			<div class="tags">
@@ -19,7 +19,7 @@
 				@endforeach
 			</div>
 
-			<table class="table shadow p-3 mb-5 bg-light">
+			<table class="table shadow p-3 mb-5 bg-light mt-4">
 				<thead>
 					<tr>
 						<th>Name</th>
@@ -28,7 +28,7 @@
 					</tr>
 				</thead>
 
-				<tbody id='editComment'>
+				<tbody id='updateComment'>
 					@foreach ($post->comments as $comment)
 						<tr>
 							<td> {{$comment->name}} </td>
@@ -38,6 +38,16 @@
 									action="{{route('comments.update', $comment->id)}}"
 									commento="{{$comment->comment}}"
 									del="{{route('comments.destroy', $comment->id)}}">
+
+										<template v-slot:patch>
+											@csrf
+									    @method('PATCH')
+										</template>
+
+										<template v-slot:delete>
+											@csrf
+									    @method('DELETE')
+										</template>
 								</update-comment>
 							</td>
 						</tr>
@@ -95,44 +105,5 @@
 
 @section('scripts')
     <script src="{{asset("js/app2.js")}}"></script>
-		<script>
-
-			Vue.component('update-comment', {
-				props: ['action', 'commento', 'del'],
-
-				template: `
-					<form :action="action" method="POST">
-						@csrf
-						@method('PATCH')
-						<div class="input-group mb-3">
-							<input type='text' name="comment" class="form-control" :disabled="disabled" :value="commento">
-							<div class="input-group-append">
-								<a class="btn btn-primary" style="cursor:pointer; color:#FFF" @click="toggleDisabled()"><i class="material-icons" v-text="edit"></i></a>
-								<button type="submit" v-if="!disabled" class="btn btn-warning"><i class="material-icons">save</i></button>
-								<form :action="del" method="POST"> @csrf @method('DELETE') <i class="material-icons"><button type="submit" class="btn btn-danger">delete</button></i></form>
-							</div>
-						</div>
-					</form>
-				`,
-
-				data() {
-					return {
-						disabled: true,
-						edit: 'edit'
-					}
-				},
-
-				methods: {
-					toggleDisabled() {
-						this.disabled = !this.disabled;
-						this.edit = this.edit == 'edit' ? 'cancel' : 'edit';
-					}
-			}
-		});
-
-			new Vue({
-				el: '#editComment'
-
-			});
-		</script>
+		<script src="{{asset("js/updateComment.js")}}"></script>
 @endsection
